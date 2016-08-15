@@ -1,6 +1,4 @@
 #!/bin/sh
-# Docker entrypoint (pid 1), run as root
-[ "$1" = "mongod" ] || exec "$@" || exit $?
 
 DATA_DIR="/data/db/$DATA_DIR"
 
@@ -9,4 +7,4 @@ mkdir -p "$DATA_DIR"
 [ "$(stat -c %U "$DATA_DIR")" = mongodb ] || chown -R mongodb "$DATA_DIR"
 
 # Drop root privilege (no way back), exec provided command as user mongodb
-exec dosu mongodb --dbpath="$DATA_DIR" "$@"
+exec dosu mongodb "$@" --dbpath="$DATA_DIR"

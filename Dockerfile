@@ -7,6 +7,7 @@ RUN chmod +x /sbin/dosu && \
   echo http://dl-4.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
   apk add --no-cache mongodb
 
+ENV DATA_DIR ""
 VOLUME /data/db
 EXPOSE 27017 28017
 
